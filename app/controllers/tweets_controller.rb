@@ -16,11 +16,10 @@ class TweetsController < ApplicationController
 
   # POST /tweets
   def create
-    user = User.find_or_build(tweet_params[:user_code])
-    @tweet = Tweet.create_with_params(tweet_params, user)
+    @tweet = Tweet.create_with_params(tweet_params, @user)
 
     if @tweet.save
-      render json: @tweet, status: :created, location: @tweet
+      render json: @tweet, status: :created
     else
       render json: @tweet.errors, status: :unprocessable_entity
     end
@@ -47,7 +46,7 @@ class TweetsController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(code: params[:user_code])
+      @user = User.find_or_build(params[:user_code])
     end
 
     # Only allow a trusted parameter "white list" through.

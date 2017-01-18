@@ -8,7 +8,7 @@ class Tweet < ApplicationRecord
     })
   end
 
-  def self.update_with_params(params, user)
+  def update_with_params(params, user)
     update({
       content: params[:content],
       user_id: user.id
