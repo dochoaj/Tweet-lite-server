@@ -48,6 +48,4 @@ test:
 #
 production:
   <<: *default
-  database: twitter-server_production
-  username: twitter-server
-  password: <%= ENV['TWITTER-SERVER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
